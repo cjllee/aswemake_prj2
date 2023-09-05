@@ -1,6 +1,7 @@
 package aswemake.prj.orderitem;
 
 import aswemake.prj.coupon.Coupon;
+import aswemake.prj.coupon.CouponScope;
 import aswemake.prj.item.Item;
 import jakarta.persistence.*;
 import aswemake.prj.order.Order;
@@ -26,6 +27,7 @@ public class OrderItem {
     private Order order;
 
     private int orderPrice; // 주문 가격을 위한 필드 추가
+
     private int count; // 주문 수량을 위한 필드 추가
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -41,8 +43,8 @@ public class OrderItem {
         return orderItem;
     }
 
-    public int getTotalPrice(){
-        return getOrderPrice() * getCount(); // 총 가격 계산 메소드
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
     }
 
 }

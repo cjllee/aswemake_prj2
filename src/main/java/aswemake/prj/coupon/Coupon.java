@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -18,17 +21,18 @@ public class Coupon {
     @GeneratedValue
     private Long id;
 
-
     private Double discountRate;
-    private Integer fixedAmount;
+
+    private Integer discountAmount;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item item;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="order_id")
-    private Order order;
+    @Enumerated(EnumType.STRING)
+    private DiscountType discountType;
 
+    @Enumerated(EnumType.STRING)
+    private CouponScope couponScope;
+
+    @ManyToMany(mappedBy = "coupons")
+    private List<Item> items = new ArrayList<>();
 }

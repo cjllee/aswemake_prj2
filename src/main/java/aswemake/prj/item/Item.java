@@ -6,6 +6,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.mapping.List;
+
+import java.util.ArrayList;
 
 @Entity
 @Getter
@@ -22,9 +25,11 @@ public class Item {
 
     private int price;
 
-    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
-    private Coupon coupon;
-
-
-
+    @ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinTable(
+            name="item_coupon",
+            joinColumns=@JoinColumn(name="item_id"),
+            inverseJoinColumns=@JoinColumn(name="coupon_id")
+    )
+    List<Coupon> coupons=new ArrayList<>();
 }
