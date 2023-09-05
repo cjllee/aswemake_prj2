@@ -44,4 +44,5 @@ public class Order {
     @OneToMany(mappedBy="order", fetch=FetchType.LAZY)
     List<Coupon> coupons=new ArrayList<>();
 
+    private double totalCost;
 }

@@ -2,7 +2,7 @@ package aswemake.prj.coupon;
 
 import aswemake.prj.item.Item;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.Order;
+import aswemake.prj.order.Order;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +18,11 @@ public class Coupon {
     @GeneratedValue
     private Long id;
 
-    // 쿠폰 할인율 또는 할인액 (e.g., if fixedAmount is null, use discountRate.)
+
     private Double discountRate;
     private Integer fixedAmount;
 
-    // Coupon can be applied to a specific item or an entire order.
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
